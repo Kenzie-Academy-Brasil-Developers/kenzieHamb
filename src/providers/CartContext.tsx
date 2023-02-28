@@ -10,7 +10,7 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
   const navigate = useNavigate();
   const localMenuCartList = localStorage.getItem('@MENU');
   const [cart, setCart] = useState<IProducts[]>([]);
-  const [cartShoppingList, setCartShoppingList] = useState(null);
+  const [cartShoppingList, setCartShoppingList] = useState(false);
   const [shoppingCartList, setShoppingCartList] = useState(
     localMenuCartList ? JSON.parse(localMenuCartList) : []
   );
@@ -51,13 +51,15 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
   const addCartShopping = (product: IProducts) => {
     const localMenuCartList = localStorage.getItem('@MENU');
 
-    if (!localMenuCartList.includes(product.name)) {
-      toast.success(`O produto ${product.name} foi adicionado ao carrinho`);
-      if (shoppingCartList) {
-        setShoppingCartList([...shoppingCartList, { ...product }]);
+    if (localMenuCartList) {
+      if (!localMenuCartList.includes(product.name)) {
+        toast.success(`O produto ${product.name} foi adicionado ao carrinho`);
+        if (shoppingCartList) {
+          setShoppingCartList([...shoppingCartList, { ...product }]);
+        }
+      } else {
+        toast.error(`O produto ${product.name} já foi adicionado ao carrinho`);
       }
-    } else {
-      toast.error(`O produto ${product.name} já foi adicionado ao carrinho`);
     }
   };
 

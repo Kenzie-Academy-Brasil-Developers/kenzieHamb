@@ -19,7 +19,7 @@ const CartModal = () => {
           <button
             type='button'
             aria-label='Fechar'
-            onClick={() => setCartShoppingList(null)}
+            onClick={() => setCartShoppingList(false)}
           >
             <MdClose size={21} />
           </button>

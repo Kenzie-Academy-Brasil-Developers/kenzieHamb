@@ -51,8 +51,8 @@ export interface IProductsProps{
 export interface ICartContext{
   cart: IProducts[];
   setCart: React.Dispatch<React.SetStateAction<IProducts[]>>;
-  cartShoppingList: null;
-  setCartShoppingList: React.Dispatch<React.SetStateAction<null>>;
+  cartShoppingList: boolean;
+  setCartShoppingList: React.Dispatch<React.SetStateAction<boolean>>;
   addCartShopping: (product: IProducts) => void;
   searchMenuList: IProducts[];
   setShoppingCartList: React.Dispatch<any>;
